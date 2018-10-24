@@ -1,0 +1,8 @@
+<h1>Dashboard#show</h1>
+<p>Find me in app/views/dashboard/show.html.erb</p>
+
+<% if flash[:success] %>
+  <%= flash[:success] %>
+<% end %>
+
+<%= link_to 'Click here to log out.', logout_path %>
