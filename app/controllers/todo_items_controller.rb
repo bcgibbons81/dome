@@ -4,6 +4,7 @@ class TodoItemsController < ApplicationController
 
 def create
  @todo_item = @todo_list.todo_items.create(todo_item_params)
+ @todo_list['user_id'] = current_user.id
  redirect_to @todo_list
 end
 
