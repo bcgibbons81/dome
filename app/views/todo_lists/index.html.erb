@@ -2,6 +2,11 @@
 
 <h1>Todo Lists</h1>
 
+<%= form_tag todo_lists_path, method: :get do %>
+  <%= text_field_tag 'term', params[:term], placeholder: "Enter user's name or surname" %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
 <table>
   <thead>
     <tr>

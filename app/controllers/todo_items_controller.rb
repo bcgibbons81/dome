@@ -10,6 +10,7 @@ end
 
 def destroy
  @todo_item = @todo_list.todo_items.find(params[:id])
+ 
  if @todo_item.destroy
   flash[:success] = "Todo List item was deleted."
  else
@@ -33,7 +34,7 @@ def set_todo_item
 end
 
 def todo_item_params
- params[:todo_item].permit(:content)
+ params[:todo_item].permit(:content, :term, :id, :todo_list_id)
 end
 
 end

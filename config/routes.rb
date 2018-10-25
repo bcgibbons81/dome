@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 end
 
   root "todo_lists#index"
+
+  resources :search, only: [:index, :show]
 end

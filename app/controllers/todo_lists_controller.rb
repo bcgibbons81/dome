@@ -5,12 +5,23 @@ class TodoListsController < ApplicationController
   # GET /todo_lists
   # GET /todo_lists.json
   def index
-    @todo_lists = TodoList.all
+    @todo_lists = TodoList.where(:user_id => current_user.id)
+    @todo_lists = if params[:term]
+  TodoList.search_by_title(params[:term])
+else
+  TodoList.where(:user_id => current_user.id)
+end
   end
 
   # GET /todo_lists/1
   # GET /todo_lists/1.json
   def show
+   # @todo_item = @todo_list.todo_items.find(params[:id])
+    #@todo_item = if params[:term]
+  #TodoList.search(params[:term])
+#else
+  #TodoList.all
+#end
   end
 
   # GET /todo_lists/new
