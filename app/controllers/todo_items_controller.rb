@@ -34,7 +34,7 @@ def set_todo_item
 end
 
 def todo_item_params
- params[:todo_item].permit(:content, :term, :id, :todo_list_id)
+ params[:todo_item].permit(:content, :term, :id, :todo_list_id, :image)
 end
 
 end
