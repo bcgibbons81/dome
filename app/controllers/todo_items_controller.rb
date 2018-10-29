@@ -1,6 +1,8 @@
 class TodoItemsController < ApplicationController
-	before_action :set_todo_list
+ before_action :set_todo_list
  before_action :set_todo_item, except: [:create]
+ before_action :owned_post, only: [:edit, :update, :destroy, :show]
+
 
 def create
  @todo_item = @todo_list.todo_items.create(todo_item_params)
@@ -25,6 +27,14 @@ def complete
 end
 
 private
+
+def owned_post
+  unless current_user == @todo_list.user
+    flash[:alert] = "That post doesn't belong to you!"
+    redirect_to root_path
+  end
+end
+
 def set_todo_list
  @todo_list = TodoList.find(params[:todo_list_id])
 end

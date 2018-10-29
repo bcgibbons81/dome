@@ -1,6 +1,7 @@
 class TodoListsController < ApplicationController
   before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_user
+  before_action :owned_post, only: [:edit, :update, :destroy, :show]
 
   # GET /todo_lists
   # GET /todo_lists.json
@@ -16,7 +17,7 @@ end
   # GET /todo_lists/1
   # GET /todo_lists/1.json
   def show
-   # @todo_item = @todo_list.todo_items.find(params[:id])
+   @todo_lists = TodoList.where(:user_id => current_user.id)
     #@todo_item = if params[:term]
   #TodoList.search(params[:term])
 #else
@@ -79,6 +80,18 @@ end
   
 
   private
+
+def owned_post
+  unless current_user == @todo_list.user
+    flash[:alert] = "That post doesn't belong to you!"
+    redirect_to root_path
+  end
+end
+  
+
+  def set_user
+  @user = User.find_by(id: params[:id])
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_todo_list
       @todo_list = TodoList.find(params[:id])
