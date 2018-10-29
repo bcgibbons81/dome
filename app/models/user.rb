@@ -11,4 +11,9 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 end
+
+def name
+  [firstname, lastname].join(' ')
+end
+
 end

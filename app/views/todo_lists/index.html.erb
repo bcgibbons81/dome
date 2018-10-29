@@ -9,7 +9,7 @@
 <% end %>
 
 <%= form_tag todo_lists_path, method: :get do %>
-  <%= text_field_tag 'term', params[:term], placeholder: "Enter user's name or surname" %>
+  <%= text_field_tag 'term', params[:term], placeholder: "Enter a ToDo List Title" %>
   <%= submit_tag 'Search' %>
 <% end %>
 
@@ -38,4 +38,5 @@
 <br>
 
 <%= link_to 'New Todo List', new_todo_list_path %>
+<%= link_to 'About', page_path('about') %>
 

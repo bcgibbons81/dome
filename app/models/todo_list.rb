@@ -8,4 +8,6 @@ class TodoList < ApplicationRecord
         prefix: true
       }
     }
+
+    
 end
